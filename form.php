@@ -63,46 +63,65 @@ function sanitizeValidation ($_post) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Hackeuse poulette</title>
+    <link rel="stylesheet" href="./sass/style.css">
+
 </head>
 <body>
     <header>
+        <div class="logo">
+            <img src="./img/hackers-poulette-logo.png" alt="">
+        </div>
         <h1>Contact support</h1>
     </header>
 
     <main>
         <form method="post" action="" id="form">
-            <label for="first-name">First-name: </label>
-            <input type="text" name="first-name" id="first-name" placeholder="Your first-name" minlength="3" maxlength="25" required>
-
-            <label for="last-name">Last-name: </label>
-            <input type="text" name="last-name" id="last-name" placeholder="Your last-name" minlength="3" maxlength="25" required>
-
-            <label for="gender">Genre: </label>
-            <label for="gender">H: </label>
-            <input type="radio" name="gender" id="H" value="h">
-            <label for="gender">F: </label>
-            <input type="radio" name="gender" id="F" value="f">
-            <label for="gender">X: </label>
-            <input type="radio" name="gender" id="X" value="x">
-
-            <label for="email">Email: </label>
-            <input type="email" name="email" id="email" placeholder="Your email" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" required>
-
-            <label for="country">Country: </label>
-            <input type="text" name="country" id="country" placeholder="Country" minlength="3" maxlength="25" required>
-
-            <label for="subject">Sujet: </label>
-            <select name="subject" id="subject">
-                <option value="other">Other</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-            </select>
-
-            <label for="message">Message: </label>
-            <textarea name="message" id="message" cols="30" rows="10" placeholder="Your message" minlength="3" maxlength="500" required></textarea>
-
-            <input type="submit" value="Envoyer">
+            <div class="first-name">
+                <label for="first-name">First-name: </label>
+                <input type="text" name="first-name" id="first-name" placeholder="Your first-name" minlength="3" maxlength="25" required>
+                <span id="first-name-error"></span>
+            </div>
+            <div class="last-name">
+                <label for="last-name">Last-name: </label>
+                <input type="text" name="last-name" id="last-name" placeholder="Your last-name" minlength="3" maxlength="25" required>
+                <span id="last-name-error"></span>
+            </div>
+            <div class="gender">
+                <label for="gender">Genre: </label>
+                <label for="gender">M: </label>
+                <input type="radio" name="gender" id="H" value="h">
+                <label for="gender">F: </label>
+                <input type="radio" name="gender" id="F" value="f">
+                <label for="gender">X: </label>
+                <input type="radio" name="gender" id="X" value="x">
+            </div>
+            <div class="email">
+                <label for="email">Email: </label>
+                <input type="email" name="email" id="email" placeholder="Your email" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" required>
+                <span id="email-error"></span>
+            </div>
+            <div class="country">
+                <label for="country">Country: </label>
+                <input type="text" name="country" id="country" placeholder="Country" minlength="3" maxlength="25" required>
+                <span id="country-error"></span>
+            </div>
+            <div class="subject">
+                <label for="subject">Sujet: </label>
+                <select name="subject" id="subject">
+                    <option value="other">Other</option>
+                    <option value="estimate">Estimate</option>
+                    <option value="complaint">Complaint</option>
+                </select>
+            </div>
+            <div class="message"></div>
+                <label for="message">Message: </label>
+                <textarea name="message" id="message" cols="30" rows="10" placeholder="Your message" minlength="3" maxlength="500" required></textarea>
+                <span id="message-error"></span>
+            </div>
+            <div class="input">
+                <input type="submit" value="Envoyer">
+            </div>
         </form>
     </main>
     
