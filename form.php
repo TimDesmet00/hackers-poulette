@@ -118,9 +118,9 @@ function sanitizeValidation ($_post) {
                     <option value="complaint">Complaint</option>
                 </select>
             </div>
-            <div class="mess"></div>
+            <div class="mess">
                 <!-- <label for="message">Message: </label> -->
-                <textarea name="message" id="message" cols="40" rows="10"  placeholder="Your message" minlength="20" maxlength="500" required></textarea>
+                <textarea name="message" id="message" cols="40" rows="10"  placeholder="Your message ..." minlength="20" maxlength="500" required></textarea>
                 <span id="message-error"></span>
             </div>
             <div class="submit">
