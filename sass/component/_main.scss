@@ -1,0 +1,38 @@
+body{
+    main{
+        background: #303030;
+        color: #fff;
+        form{
+            padding: 2em;
+            div{
+                margin: 1.3em 0;
+                // label{}
+                input{
+                    background-color: #0d8187;
+                    border: none;
+                }
+                // span{}
+                select{
+                    background-color: #0d8187;
+                    border: none;
+                }
+                .mess{
+                    textarea{
+                        background-color: #0d8187;
+                        border: none;
+                        width: 80%;
+                    }
+                }
+            }
+            .submit{
+                text-align: center;
+                input{
+                    font-size: 1.5em;
+                    padding: 0.3em 1em;
+                    border-radius: 18px;
+                }
+            }
+            
+        }
+    }
+}

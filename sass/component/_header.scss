@@ -5,13 +5,15 @@ body{
         .logo{
             img{
                 width: 50%;
+                position: relative;
+                left: -5%;
             }
         }
         h1{
-            font-size: 1.5rem;
+            font-size: 2em;
             position: absolute;
             top: 45%;
-            right: 10%;
+            right: 5%;
         }
     }
 }
