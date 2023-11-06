@@ -1,5 +1,61 @@
 <?php
+// fonction de validation et d'assainisement des données du formulaire
 
+function sanitizeValidation ($_post) {
+    if (isset($_POST["firstName"]) and !empty($_POST["firstName"]) and strlen($_POST["firstName"]) > 2 and strlen($_POST["firstName"]) < 25) {
+        $firstName = htmlspecialchars($_POST["firstName"]);
+    } else {
+        echo "A valide first name is required";
+    }
+
+    if (isset($_POST["lastName"]) and !empty($_POST["lastName"]) and strlen($_POST["lastName"]) > 2 and strlen($_POST["lastName"]) < 25) {
+        $lastName = htmlspecialchars($_POST["lastName"]);
+    } else {
+        echo "A valide last name is required";
+    }
+
+    if (isset($_POST["gender"]) and !empty($_Post["gender"])){
+        $gender = htmlspecialchars($_POST["gender"]);
+    }
+
+    if (isset($_POST["email"]) and !empty($_POST["email"]) and filter_var($_POST["email"], FILTER_VALIDATE_EMAIL) and preg_match("/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$/", $_POST["email"])) {
+        $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
+    } else {
+        echo "A valide email is required";
+    }
+
+    if (isset($_POST["country"]) and !empty($_POST["country"]) and strlen($_POST["country"]) > 2 and strlen($_POST["country"]) < 20) {
+        $country = htmlspecialchars($_POST["country"]);
+    } else {
+        echo "A valide country is required";
+    }
+
+    if (isset($_POST["subject"]) and !empty($_POST["subject"])) {
+        $subject = htmlspecialchars($_POST["subject"]);
+    } else {
+        echo "A valide subject is required";
+    }
+
+    if (isset($_POST["message"]) and !empty($_POST["message"]) and strlen($_POST["message"]) > 2 and strlen($_POST["message"]) < 500) {
+        $message = htmlspecialchars($_POST["message"]);
+    } else {
+        echo "A valide message is required";
+    }
+
+    if (isset($firstName) and isset($lastName) and isset($email) and isset($country)) {
+        echo "Thank you for your order!";
+        return $sanitizedData = array(
+            "firstName" => $firstName,
+            "lastName" => $lastName,
+            "gender" => $gender,
+            "email" => $email,
+            "country" => $country,
+            "subject" => $subject,
+            "message" => $message
+        );
+    }
+    
+}
 ?>
 
 <!DOCTYPE html>
@@ -11,42 +67,42 @@
 </head>
 <body>
     <header>
-        <h1>support de contact</h1>
+        <h1>Contact support</h1>
     </header>
 
     <main>
         <form method="post" action="" id="form">
-            <label for="last-name">Nom: </label>
-            <input type="text" name="last-name" id="last-name" placeholder="Votre nom" minlength="3" maxlength="25" required>
+            <label for="first-name">First-name: </label>
+            <input type="text" name="first-name" id="first-name" placeholder="Your first-name" minlength="3" maxlength="25" required>
 
-            <label for="first-name">Prénom: </label>
-            <input type="text" name="first-name" id="first-name" placeholder="Votre prénom" minlength="3" maxlength="25" required>
+            <label for="last-name">Last-name: </label>
+            <input type="text" name="last-name" id="last-name" placeholder="Your last-name" minlength="3" maxlength="25" required>
 
             <label for="gender">Genre: </label>
             <label for="gender">H: </label>
-            <input type="radio" name="gender" id="H">
+            <input type="radio" name="gender" id="H" value="h">
             <label for="gender">F: </label>
-            <input type="radio" name="gender" id="F">
+            <input type="radio" name="gender" id="F" value="f">
             <label for="gender">X: </label>
-            <input type="radio" name="gender" id="X">
+            <input type="radio" name="gender" id="X" value="x">
 
             <label for="email">Email: </label>
-            <input type="email" name="email" id="email" placeholder="Votre email" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" required>
+            <input type="email" name="email" id="email" placeholder="Your email" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" required>
 
-            <label for="country">Pays: </label>
-            <input type="text" name="country" id="country" placeholder="votre pays" minlength="3" maxlength="25" required>
+            <label for="country">Country: </label>
+            <input type="text" name="country" id="country" placeholder="Country" minlength="3" maxlength="25" required>
 
             <label for="subject">Sujet: </label>
             <select name="subject" id="subject">
-                <option value="1">1</option>
+                <option value="other">Other</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
             </select>
 
             <label for="message">Message: </label>
-            <textarea name="message" id="message" cols="30" rows="10" placeholder="Votre message" minlength="3" maxlength="500" required></textarea>
+            <textarea name="message" id="message" cols="30" rows="10" placeholder="Your message" minlength="3" maxlength="500" required></textarea>
 
-            <input type="submit" value="Envoyer
+            <input type="submit" value="Envoyer">
         </form>
     </main>
     
