@@ -72,6 +72,29 @@ function sanitizeValidation ($_post) {
     }
     
 }
+
+function dd()
+    {
+        list($callee) = debug_backtrace();
+
+        $args = func_get_args();
+
+        $total_args = func_num_args();
+
+        echo '<div><fieldset style="background: #fefefe !important; border:1px red solid; padding:15px">';
+        echo '<legend style="background:blue; color:white; padding:5px;">'.$callee['file'].' @line: '.$callee['line'].'</legend><pre><code>';
+
+        $i = 0;
+
+        foreach ($args as $arg)
+        {
+            echo '<strong>Debug #' . ++$i . ' of ' . $total_args . '</strong>: ' . '<br>';
+
+            var_dump($arg);
+        }
+
+        echo "</code></pre></fieldset><div><br>";
+    }
 ?>
 
 <!DOCTYPE html>
@@ -152,6 +175,7 @@ function sanitizeValidation ($_post) {
             <?php
                 if(array_key_exists('submit', $_POST)) { 
                     sanitizeValidation($_POST);
+                    // dd(sanitizeValidation($_POST));
                 }
             ?>
         </form>
