@@ -65,6 +65,9 @@ body main {
 body main form {
   padding: 2em;
 }
+body main form #honeypot {
+  display: none;
+}
 body main form div {
   margin: 1.3em 0;
 }

@@ -1,48 +1,56 @@
 <?php
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
 // fonction de validation et d'assainisement des données du formulaire
 
 function sanitizeValidation ($_post) {
+
+    if (isset($_POST["honeypot"]) and !empty($_POST["honeypot"])) {
+        echo "You are a robot";
+    }
+    
     if (isset($_POST["firstName"]) and !empty($_POST["firstName"]) and strlen($_POST["firstName"]) > 2 and strlen($_POST["firstName"]) < 25) {
         $firstName = htmlspecialchars($_POST["firstName"]);
         echo $firstName;
     } else {
-        // echo "A valide first name is required";
+        echo "A valide first name is required";
     }
 
     if (isset($_POST["lastName"]) and !empty($_POST["lastName"]) and strlen($_POST["lastName"]) > 2 and strlen($_POST["lastName"]) < 25) {
         $lastName = htmlspecialchars($_POST["lastName"]);
         echo $lastName;
     } else {
-        // echo "A valide last name is required";
+        echo "A valide last name is required";
     }
 
     if (isset($_POST["gender"]) and !empty($_Post["gender"])){
         $gender = htmlspecialchars($_POST["gender"]);
-        echo $gender;
+    } else {
+        echo "choise your gender";
     }
 
     if (isset($_POST["email"]) and !empty($_POST["email"]) and filter_var($_POST["email"], FILTER_VALIDATE_EMAIL) and preg_match("/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$/", $_POST["email"])) {
         $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
     } else {
-        // echo "A valide email is required";
+        echo "A valide email is required";
     }
 
     if (isset($_POST["country"]) and !empty($_POST["country"]) and strlen($_POST["country"]) > 2 and strlen($_POST["country"]) < 20) {
         $country = htmlspecialchars($_POST["country"]);
     } else {
-        // echo "A valide country is required";
+        echo "A valide country is required";
     }
 
     if (isset($_POST["subject"]) and !empty($_POST["subject"])) {
         $subject = htmlspecialchars($_POST["subject"]);
     } else {
-        // echo "A valide subject is required";
+        echo "A valide subject is required";
     }
 
     if (isset($_POST["message"]) and !empty($_POST["message"]) and strlen($_POST["message"]) > 2 and strlen($_POST["message"]) < 500) {
         $message = htmlspecialchars($_POST["message"]);
     } else {
-        // echo "A valide message is required";
+        echo "A valide message is required";
     }
 
     if (isset($firstName) and isset($lastName) and isset($gender) and isset($email) and isset($country) and isset($subject) and isset($message)) {
@@ -81,16 +89,21 @@ function sanitizeValidation ($_post) {
 
     <main>
         <form method="post" action="" id="form">
+
+            <input type="text" name="honeypot" id="honeypot">
+
             <div class="first-name">
                 <label for="first-name">First-name: </label>
                 <input type="text" name="first-name" id="first-name" placeholder="Your first-name" minlength="3" maxlength="25" required>
                 <span id="first-name-error"></span>
             </div>
+            
             <div class="last-name">
                 <label for="last-name">Last-name: </label>
                 <input type="text" name="last-name" id="last-name" placeholder="Your last-name" minlength="3" maxlength="25" required>
                 <span id="last-name-error"></span>
             </div>
+            
             <div class="gender">
                 <label for="gender">Genre:  </label>
                 <label for="gender">M: </label>
@@ -100,16 +113,19 @@ function sanitizeValidation ($_post) {
                 <label for="gender">X: </label>
                 <input type="radio" name="gender" id="X" value="x">
             </div>
-            <div class="email">
+            
+            <div class="e-mail">
                 <label for="email">Email: </label>
                 <input type="email" name="email" id="email" placeholder="Your email" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" required>
                 <span id="email-error"></span>
             </div>
+            
             <div class="country">
                 <label for="country">Country: </label>
                 <input type="text" name="country" id="country" placeholder="Country" minlength="3" maxlength="25" required>
                 <span id="country-error"></span>
             </div>
+            
             <div class="subject">
                 <label for="subject">Sujet: </label>
                 <select name="subject" id="subject">
@@ -118,20 +134,23 @@ function sanitizeValidation ($_post) {
                     <option value="complaint">Complaint</option>
                 </select>
             </div>
+
             <div class="mess">
                 <!-- <label for="message">Message: </label> -->
                 <textarea name="message" id="message" cols="40" rows="10"  placeholder="Your message ..." minlength="20" maxlength="500" required></textarea>
                 <span id="message-error"></span>
             </div>
+            
             <div class="submit">
-                <input type="submit" value="Envoyer">
+                <input type="submit" name="submit" value="Envoyer">
             </div>
+            <?php
+                if(array_key_exists('submit', $_POST)) { 
+                    sanitizeValidation($_POST);
+                }
+            ?>
         </form>
-        <?php
-            if(array_key_exists('submit', $_POST)) { 
-                sanitizeValidation($_POST);
-            }
-        ?>
+        
     </main>
     
 </body>

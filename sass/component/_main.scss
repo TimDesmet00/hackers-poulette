@@ -4,6 +4,9 @@ body{
         color: #fff;
         form{
             padding: 2em;
+            #honeypot{
+                display: none;
+            }
             div{
                 margin: 1.3em 0;
                 // label{}
