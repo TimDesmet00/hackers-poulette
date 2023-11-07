@@ -17,3 +17,38 @@ body{
         }
     }
 }
+
+@media only screen and (min-width:612px){
+    body{
+        header{
+            .logo{
+                img{
+                    width: 40%;
+                    position: relative;
+                    left: 5%;
+                }
+            }
+            h1{
+                font-size: 3.2em;
+                right: 10%;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width:1024px){
+    body{
+        header{
+            .logo{
+                img{
+                    width: 35%;
+                    left: 15%;
+                }
+            }
+            h1{
+                font-size: 4em;
+                right: 15%;
+            }
+        }
+    }
+}
