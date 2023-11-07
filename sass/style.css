@@ -79,10 +79,13 @@ body main form div select {
   background-color: #0d8187;
   border: none;
 }
-body main form div .mess textarea {
+body main form .mess {
+  text-align: center;
+}
+body main form .mess textarea {
   background-color: #0d8187;
   border: none;
-  width: 80%;
+  width: 90%;
 }
 body main form .submit {
   text-align: center;

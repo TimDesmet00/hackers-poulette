@@ -4,51 +4,56 @@ ini_set("display_errors", 1);
 // fonction de validation et d'assainisement des données du formulaire
 
 function sanitizeValidation ($_post) {
-
+    // print_r($_POST);
     if (isset($_POST["honeypot"]) and !empty($_POST["honeypot"])) {
         echo "You are a robot";
     }
     
-    if (isset($_POST["firstName"]) and !empty($_POST["firstName"]) and strlen($_POST["firstName"]) > 2 and strlen($_POST["firstName"]) < 25) {
-        $firstName = htmlspecialchars($_POST["firstName"]);
-        echo $firstName;
+    if (isset($_POST["first-name"]) and !empty($_POST["first-name"]) and strlen($_POST["first-name"]) > 2 and strlen($_POST["first-name"]) < 25) {
+        $firstName = htmlspecialchars($_POST["first-name"]);
+        // echo $firstName;
     } else {
         echo "A valide first name is required";
     }
 
-    if (isset($_POST["lastName"]) and !empty($_POST["lastName"]) and strlen($_POST["lastName"]) > 2 and strlen($_POST["lastName"]) < 25) {
-        $lastName = htmlspecialchars($_POST["lastName"]);
-        echo $lastName;
+    if (isset($_POST["last-name"]) and !empty($_POST["last-name"]) and strlen($_POST["last-name"]) > 2 and strlen($_POST["last-name"]) < 25) {
+        $lastName = htmlspecialchars($_POST["last-name"]);
+        // echo $lastName;
     } else {
         echo "A valide last name is required";
     }
 
-    if (isset($_POST["gender"]) and !empty($_Post["gender"])){
+    if (isset($_POST["gender"]) and !empty($_POST["gender"])){
         $gender = htmlspecialchars($_POST["gender"]);
+        // echo $gender;
     } else {
         echo "choise your gender";
     }
 
     if (isset($_POST["email"]) and !empty($_POST["email"]) and filter_var($_POST["email"], FILTER_VALIDATE_EMAIL) and preg_match("/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$/", $_POST["email"])) {
         $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
+        // echo $email;
     } else {
         echo "A valide email is required";
     }
 
     if (isset($_POST["country"]) and !empty($_POST["country"]) and strlen($_POST["country"]) > 2 and strlen($_POST["country"]) < 20) {
         $country = htmlspecialchars($_POST["country"]);
+        // echo $country;
     } else {
         echo "A valide country is required";
     }
 
     if (isset($_POST["subject"]) and !empty($_POST["subject"])) {
         $subject = htmlspecialchars($_POST["subject"]);
+        // echo $subject;
     } else {
         echo "A valide subject is required";
     }
 
     if (isset($_POST["message"]) and !empty($_POST["message"]) and strlen($_POST["message"]) > 2 and strlen($_POST["message"]) < 500) {
         $message = htmlspecialchars($_POST["message"]);
+        // echo $message;
     } else {
         echo "A valide message is required";
     }

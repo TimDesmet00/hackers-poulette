@@ -19,13 +19,16 @@ body{
                     background-color: #0d8187;
                     border: none;
                 }
-                .mess{
-                    textarea{
-                        background-color: #0d8187;
-                        border: none;
-                        width: 80%;
-                    }
+            }
+
+            .mess{
+                text-align: center;    
+                textarea{
+                    background-color: #0d8187;
+                    border: none;
+                    width: 90%;
                 }
+                
             }
             .submit{
                 text-align: center;
