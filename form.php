@@ -1,6 +1,10 @@
 <?php
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
+
+ini_set('smtp_port', 1025);
+// ini-set('sendmail_path ="c:/mailhog/');
+$sanitizedData = array();
 // fonction de validation et d'assainisement des données du formulaire
 
 function sanitizeValidation ($_post) {
@@ -175,6 +179,7 @@ function dd()
             <?php
                 if(array_key_exists('submit', $_POST)) { 
                     sanitizeValidation($_POST);
+                    mail('admin@hackeuse.com', 'contactsupport', var_dump($sanitizedData['firstName']));
                     // dd(sanitizeValidation($_POST));
                 }
             ?>
